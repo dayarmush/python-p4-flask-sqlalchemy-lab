@@ -12,9 +12,12 @@ class Zookeeper(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    birthday = db.column(db.DateTime)
+    birthday = db.Column(db.String)
 
     animals = db.relationship('Animal', backref='zookeeper')
+
+    def __repr__(self):
+        return f'Zookeeper(Name: {self.name}, Birthday: )'
 
 class Enclosure(db.Model):
     __tablename__ = 'enclosures'
@@ -34,3 +37,6 @@ class Animal(db.Model):
 
     zookeeper_id = db.Column(db.Integer, db.ForeignKey('zookeepers.id'))
     enclosure_id = db.Column(db.Integer, db.ForeignKey('enclosures.id'))
+
+    def __repr__(self):
+        return f'Animal(name: {self.name})'
