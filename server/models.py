@@ -11,6 +11,10 @@ class Zookeeper(db.Model):
     __tablename__ = 'zookeepers'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    birthday = db.column(db.DateTime)
+
+    animals = db.relationship('Animal', backref='zookeeper')
 
 class Enclosure(db.Model):
     __tablename__ = 'enclosures'
